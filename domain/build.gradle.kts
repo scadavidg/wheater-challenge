@@ -4,13 +4,13 @@ plugins {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
 kotlin {
     compilerOptions {
-        jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11
+        jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17
     }
 }
 
@@ -18,16 +18,19 @@ tasks.test {
     useJUnitPlatform()
 }
 
-dependencies {  
-    // Testing - JUnit 5
+dependencies {
+    // ===== UNIT TESTING =====
+    // JUnit 5 (Modern Testing Framework)
     testImplementation(libs.junit5.api)
-    testRuntimeOnly(libs.junit5.engine)
     testImplementation(libs.junit5.params)
+    testRuntimeOnly(libs.junit5.engine)
+    
+    // JUnit 4 (Legacy Compatibility)
+    testImplementation(libs.junit4)
+    testRuntimeOnly(libs.junit5.vintage)
+    
+    // Testing Utilities
     testImplementation(libs.mockito.core)
     testImplementation(libs.mockito.kotlin)
     testImplementation(libs.coroutines.test)
-    
-    // Keep JUnit 4 for compatibility
-    testImplementation(libs.junit4)
-    testRuntimeOnly(libs.junit5.vintage)
 }
