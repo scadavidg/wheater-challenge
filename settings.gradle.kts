@@ -21,4 +21,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "WheaterChallenge"
 include(":app")
- 
+include(":data")
+include(":domain")
+include(":widget")
