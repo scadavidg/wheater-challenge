@@ -13,3 +13,4 @@
 .externalNativeBuild
 .cxx
 local.properties
+IMPLEMENTATION_GUIDE.md
