@@ -116,30 +116,20 @@ The application follows **Clean Architecture** principles with clear separation 
 - **Android Gradle Plugin 8.11.1**
 - **Kotlin Symbol Processing (KSP)**
 - **ktlint** for code quality
+<img width="1546" height="931" alt="image" src="" />
 
 ## 📸 Demo - Multi-Device Screenshots
-
 | Device Type | Portrait | Landscape |
 |------------|----------|-----------|
-| **Phone (Medium)** | <img src="screenshots/phone_portrait.png" width="200"/> | <img src="screenshots/phone_landscape.png" width="300"/> |
-| **Tablet** | <img src="screenshots/tablet_portrait.png" width="250"/> | <img src="screenshots/tablet_landscape.png" width="350"/> |
-| **Android TV / FireTV** | N/A (TV Mode) | <img src="screenshots/android_tv_landscape.png" width="400"/> |
-
-### **UI States Demonstrated**
-| State | Description | Screenshot |
-|-------|-------------|------------|
-| **Loading** | Data fetching in progress | <img src="screenshots/loading_state.png" width="200"/> |
-| **Success** | Weather data displayed | <img src="screenshots/success_state.png" width="200"/> |
-| **Error** | Network error with retry | <img src="screenshots/error_state.png" width="200"/> |
-| **FireTV Mode** | Enhanced TV interface | <img src="screenshots/firetv_mode.png" width="300"/> |
+| **Phone (Medium)** | <img src="https://github.com/user-attachments/assets/f3378e7c-a6fd-4c37-8daa-f7dde55ec855" width="200"/> | <img src="https://github.com/user-attachments/assets/0903e579-b137-46ab-a295-2b49b3278a38" width="300"/> |
+| **Tablet** | <img src="https://github.com/user-attachments/assets/83847e10-40fa-46ad-8429-2c0174008d6a" width="250"/> | <img src="https://github.com/user-attachments/assets/00b196f2-e200-4197-a1df-596a61db2e6d" width="350"/> |
+| **Android TV / FireTV** | N/A (TV Mode) | <img src="https://github.com/user-attachments/assets/4b69c700-2c29-40ba-8030-967bdf38d5a7" width="400"/> |
 
 ### **Adaptive Features**
 - **Automatic Orientation Detection**: Seamless transition between portrait/landscape layouts
 - **Platform-Specific Sizing**: Larger fonts and touch targets for FireTV
 - **Responsive Design**: Optimal layouts for different screen densities and sizes
 - **Dark Theme Support**: FireTV automatically uses dark theme optimizations
-
-*Note: To generate actual screenshots, run the app on different device emulators and capture the UI in various states.*
 
 ## 🧪 Testing Report
 
@@ -153,38 +143,6 @@ The application follows **Clean Architecture** principles with clear separation 
 | **widget** | 48 (Components/Logic) | 7 (Error Handling) | 15 (Multi-Device) | **70 tests** |
 | | | | | |
 | **TOTAL PROJECT** | **96 Unit Tests** | **28 Integration Tests** | **44 UI Tests** | **🎯 168 TESTS** |
-
-### **Detailed Test Breakdown**
-
-#### **📱 App Module (46 tests)**
-- **WeatherViewModelTest** (7 tests): ViewModel state management and error handling
-- **MainActivityTest** (9 tests): Activity lifecycle and initialization
-- **WeatherScreenTest** (11 tests): Compose screen UI behavior  
-- **WeatherScreenIntegrationTest** (9 tests): End-to-end screen testing
-- **HiltModuleTest** (10 tests): Dependency injection validation
-
-#### **🌐 Data Module (29 tests)**
-- **WeatherRepositoryImplTest** (9 tests): Repository logic and API integration
-- **WeatherDataTest** (5 tests): Data model mapping and validation
-- **WeatherResponseTest** (5 tests): API response parsing
-- **ForecastResponseTest** (5 tests): Forecast data structure testing
-- **WeatherIntegrationTest** (5 tests): Real API integration testing
-
-#### **🏗️ Domain Module (23 tests)**
-- **GetWeatherUseCaseTest** (5 tests): Weather retrieval business logic
-- **GetTodayTemperatureUseCaseTest** (4 tests): Temperature use case validation
-- **WeatherTest** (4 tests): Domain model functionality
-- **ResultTest** (4 tests): Result wrapper behavior
-- **UseCaseIntegrationTest** (6 tests): Cross-use case integration
-
-#### **🎨 Widget Module (70 tests)**
-- **WeatherWidgetLogicTest** (15 tests): Widget component logic
-- **WeatherWidgetParameterTest** (11 tests): Parameter validation and edge cases
-- **WeatherWidgetStateTest** (9 tests): State management in widgets
-- **WeatherWidgetImageErrorHandlingUnitTest** (7 tests): Image error scenarios
-- **WeatherWidgetImageErrorHandlingTest** (6 tests): Image fallback testing
-- **WeatherWidgetTest** (15 tests): UI testing across devices
-- **WeatherWidgetImageErrorIntegrationTest** (7 tests): Integration error testing
 
 ### **Test Categories by Type**
 
@@ -296,46 +254,11 @@ The project includes multiple build variants for different platforms:
    # Run all tests
    ./gradlew test connectedAndroidTest
    ```
-
-### **Device Testing**
-
-#### **Phone/Tablet Emulators**
-- Pixel 4 (Phone)
-- Pixel C (Tablet)
-- Various API levels (24+)
-
-#### **Android TV Emulators**
-- Android TV (1080p)
-- Fire TV (1080p/4K)
-
-### **Production Deployment**
-
-1. **Generate Signed APK**
-   ```bash
-   ./gradlew assembleRelease
-   ```
-
-2. **Google Play Store**
-   - Use `googleRelease` variant
-   - Follow Google Play Console guidelines
-
-3. **Amazon Appstore**
-   - Use `amazonRelease` variant
-   - Follow Amazon Developer Console requirements
-
 ---
 
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
 
 ---
 
