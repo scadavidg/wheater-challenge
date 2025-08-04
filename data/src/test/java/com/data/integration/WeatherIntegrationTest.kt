@@ -53,8 +53,8 @@ class WeatherIntegrationTest {
                         ForecastProperties(
                             periods =
                                 listOf(
-                                    Period(temperature = expectedTemperature),
-                                    Period(temperature = 65),
+                                    Period(temperature = expectedTemperature, shortForecast = "Sunny", icon = "https://api.weather.gov/icons/land/day/skc?size=medium"),
+                                    Period(temperature = 65, shortForecast = "Partly Cloudy", icon = "https://api.weather.gov/icons/land/day/bkn?size=medium"),
                                 ),
                         ),
                 )
@@ -105,7 +105,7 @@ class WeatherIntegrationTest {
                 ForecastResponse(
                     properties =
                         ForecastProperties(
-                            periods = listOf(Period(temperature = expectedTemperature)),
+                            periods = listOf(Period(temperature = expectedTemperature, shortForecast = "Clear", icon = "https://api.weather.gov/icons/land/day/few?size=medium")),
                         ),
                 )
 
@@ -164,7 +164,7 @@ class WeatherIntegrationTest {
                 ForecastResponse(
                     properties =
                         ForecastProperties(
-                            periods = listOf(Period(temperature = testTemperature)),
+                            periods = listOf(Period(temperature = testTemperature, shortForecast = "Partly Cloudy", icon = "https://api.weather.gov/icons/land/day/bkn?size=medium")),
                         ),
                 )
 

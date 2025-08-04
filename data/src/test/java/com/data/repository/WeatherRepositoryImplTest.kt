@@ -46,7 +46,7 @@ class WeatherRepositoryImplTest {
                 ForecastResponse(
                     properties =
                         ForecastProperties(
-                            periods = listOf(Period(temperature = expectedTemperature)),
+                            periods = listOf(Period(temperature = expectedTemperature, shortForecast = "Sunny", icon = "https://api.weather.gov/icons/land/day/skc?size=medium")),
                         ),
                 )
             whenever(api.getWeatherPoints(testLatitude, testLongitude)).thenReturn(weatherResponse)
@@ -144,7 +144,7 @@ class WeatherRepositoryImplTest {
                 ForecastResponse(
                     properties =
                         ForecastProperties(
-                            periods = listOf(Period(temperature = expectedTemperature)),
+                            periods = listOf(Period(temperature = expectedTemperature, shortForecast = "Clear", icon = "https://api.weather.gov/icons/land/day/few?size=medium")),
                         ),
                 )
             whenever(api.getWeatherPoints(testLatitude, testLongitude)).thenReturn(weatherResponse)
@@ -192,7 +192,7 @@ class WeatherRepositoryImplTest {
                 ForecastResponse(
                     properties =
                         ForecastProperties(
-                            periods = listOf(Period(temperature = expectedTemperature)),
+                            periods = listOf(Period(temperature = expectedTemperature, shortForecast = "Partly Cloudy", icon = "https://api.weather.gov/icons/land/day/bkn?size=medium")),
                         ),
                 )
             whenever(api.getWeatherPoints(testLatitude, testLongitude)).thenReturn(weatherResponse)

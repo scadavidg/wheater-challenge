@@ -35,7 +35,7 @@ class UseCaseIntegrationTest {
     fun givenRepositoryWorksCorrectly_whenCallingBothUseCasesSequentially_thenBothReturnSuccess() = runTest {
         // Given
         val expectedTemperature = 75
-        val expectedWeather = Weather(temperature = expectedTemperature, location = "Test City")
+        val expectedWeather = Weather(temperature = expectedTemperature, shortForecast = "Sunny", icon = "https://api.weather.gov/icons/land/day/skc?size=medium", location = "Test City")
         whenever(repository.getTodayTemperature()).thenReturn(Result.Success(expectedTemperature))
         whenever(repository.getWeather()).thenReturn(Result.Success(expectedWeather))
 
@@ -74,7 +74,7 @@ class UseCaseIntegrationTest {
     fun givenConcurrentUseCaseCalls_whenRepositoryResponds_thenHandlesConcurrencyCorrectly() = runTest {
         // Given
         val expectedTemperature = 68
-        val expectedWeather = Weather(temperature = expectedTemperature, location = "Concurrent City")
+        val expectedWeather = Weather(temperature = expectedTemperature, shortForecast = "Clear", icon = "https://api.weather.gov/icons/land/day/few?size=medium", location = "Concurrent City")
         whenever(repository.getTodayTemperature()).thenReturn(Result.Success(expectedTemperature))
         whenever(repository.getWeather()).thenReturn(Result.Success(expectedWeather))
 

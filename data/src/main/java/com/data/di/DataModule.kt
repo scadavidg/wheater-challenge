@@ -2,8 +2,6 @@ package com.data.di
 
 import com.data.api.WeatherApi
 import com.data.config.ApiConfig
-import com.data.repository.WeatherRepositoryImpl
-import com.domain.repository.WeatherRepository
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
@@ -54,11 +52,5 @@ object DataModule {
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .build()
             .create(WeatherApi::class.java)
-    }
-
-    @Provides
-    @Singleton
-    fun provideWeatherRepository(api: WeatherApi): WeatherRepository {
-        return WeatherRepositoryImpl(api)
     }
 }

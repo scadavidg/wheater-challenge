@@ -31,6 +31,8 @@ class WeatherWidgetComposablePreviews {
             Surface {
                 WeatherWidgetComposable(
                     temperature = 0,
+                    shortForecast = "",
+                    icon = "",
                     onRefresh = { },
                     isLoading = true,
                     isLandscape = false,
@@ -52,6 +54,8 @@ class WeatherWidgetComposablePreviews {
             Surface {
                 WeatherWidgetComposable(
                     temperature = 0,
+                    shortForecast = "",
+                    icon = "",
                     onRefresh = { },
                     isError = true,
                     isLandscape = false,
@@ -73,6 +77,8 @@ class WeatherWidgetComposablePreviews {
             Surface {
                 WeatherWidgetComposable(
                     temperature = 72,
+                    shortForecast = "Sunny",
+                    icon = "https://api.weather.gov/icons/land/day/skc?size=medium",
                     onRefresh = { },
                     isLandscape = false,
                     isFireTV = false
@@ -93,6 +99,8 @@ class WeatherWidgetComposablePreviews {
             Surface {
                 WeatherWidgetComposable(
                     temperature = 85,
+                    shortForecast = "Hot",
+                    icon = "https://api.weather.gov/icons/land/day/hot?size=medium",
                     onRefresh = { },
                     isLandscape = true,
                     isFireTV = false
@@ -115,6 +123,8 @@ class WeatherWidgetComposablePreviews {
             Surface {
                 WeatherWidgetComposable(
                     temperature = 78,
+                    shortForecast = "Clear",
+                    icon = "https://api.weather.gov/icons/land/night/skc?size=medium",
                     onRefresh = { },
                     isLandscape = true, // FireTV typically uses landscape
                     isFireTV = true
@@ -135,6 +145,8 @@ class WeatherWidgetComposablePreviews {
             Surface {
                 WeatherWidgetComposable(
                     temperature = 0,
+                    shortForecast = "",
+                    icon = "",
                     onRefresh = { },
                     isLoading = true,
                     isLandscape = true,
@@ -159,6 +171,8 @@ class WeatherWidgetComposablePreviews {
             Surface {
                 WeatherWidgetComposable(
                     temperature = 69,
+                    shortForecast = "Partly Cloudy",
+                    icon = "https://api.weather.gov/icons/land/night/bkn?size=medium",
                     onRefresh = { },
                     isLandscape = false,
                     isFireTV = false
@@ -181,6 +195,8 @@ class WeatherWidgetComposablePreviews {
             Surface {
                 WeatherWidgetComposable(
                     temperature = 125,
+                    shortForecast = "Extremely Hot",
+                    icon = "https://api.weather.gov/icons/land/day/hot?size=medium",
                     onRefresh = { },
                     isLandscape = false,
                     isFireTV = false
@@ -201,6 +217,8 @@ class WeatherWidgetComposablePreviews {
             Surface {
                 WeatherWidgetComposable(
                     temperature = -25,
+                    shortForecast = "Snow",
+                    icon = "https://api.weather.gov/icons/land/day/snow?size=medium",
                     onRefresh = { },
                     isLandscape = false,
                     isFireTV = false
@@ -221,8 +239,100 @@ class WeatherWidgetComposablePreviews {
             Surface {
                 WeatherWidgetComposable(
                     temperature = 0,
+                    shortForecast = "Freezing",
+                    icon = "https://api.weather.gov/icons/land/day/blizzard?size=medium",
                     onRefresh = { },
                     isLandscape = false,
+                    isFireTV = false
+                )
+            }
+        }
+    }
+
+    // ===== IMAGE ERROR HANDLING PREVIEWS =====
+
+    @Preview(
+        name = "Image Error - Empty Icon URL",
+        device = Devices.PIXEL_4,
+        showBackground = true,
+        backgroundColor = 0xFFF5F5F5
+    )
+    @Composable
+    fun WeatherWidgetEmptyIconUrl() {
+        MaterialTheme {
+            Surface {
+                WeatherWidgetComposable(
+                    temperature = 75,
+                    shortForecast = "Sunny",
+                    icon = "", // Empty icon URL - should show fallback
+                    onRefresh = { },
+                    isLandscape = false,
+                    isFireTV = false
+                )
+            }
+        }
+    }
+
+    @Preview(
+        name = "Image Error - Invalid Icon URL",
+        device = Devices.PIXEL_4,
+        showBackground = true,
+        backgroundColor = 0xFFF5F5F5
+    )
+    @Composable
+    fun WeatherWidgetInvalidIconUrl() {
+        MaterialTheme {
+            Surface {
+                WeatherWidgetComposable(
+                    temperature = 68,
+                    shortForecast = "Partly Cloudy",
+                    icon = "https://invalid-domain.fake/nonexistent-icon.png", // Invalid URL - will fail to load
+                    onRefresh = { },
+                    isLandscape = false,
+                    isFireTV = false
+                )
+            }
+        }
+    }
+
+    @Preview(
+        name = "Image Error - 404 Icon URL",
+        device = Devices.PIXEL_4,
+        showBackground = true,
+        backgroundColor = 0xFFF5F5F5
+    )
+    @Composable
+    fun WeatherWidget404IconUrl() {
+        MaterialTheme {
+            Surface {
+                WeatherWidgetComposable(
+                    temperature = 82,
+                    shortForecast = "Hot",
+                    icon = "https://api.weather.gov/icons/land/day/nonexistent-404.png", // 404 URL
+                    onRefresh = { },
+                    isLandscape = false,
+                    isFireTV = false
+                )
+            }
+        }
+    }
+
+    @Preview(
+        name = "Image Error - Landscape Empty Icon",
+        device = "spec:width=891dp,height=411dp,dpi=420,isRound=false,chinSize=0dp,orientation=landscape",
+        showBackground = true,
+        backgroundColor = 0xFFF5F5F5
+    )
+    @Composable
+    fun WeatherWidgetLandscapeEmptyIcon() {
+        MaterialTheme {
+            Surface {
+                WeatherWidgetComposable(
+                    temperature = 72,
+                    shortForecast = "Clear",
+                    icon = "", // Empty icon in landscape
+                    onRefresh = { },
+                    isLandscape = true,
                     isFireTV = false
                 )
             }

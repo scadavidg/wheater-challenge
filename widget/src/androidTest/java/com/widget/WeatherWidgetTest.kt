@@ -30,6 +30,8 @@ class WeatherWidgetTest {
         composeTestRule.setContent {
             WeatherWidgetComposable(
                 temperature = temperature,
+                shortForecast = "Sunny",
+                icon = "https://api.weather.gov/icons/land/day/skc?size=medium",
                 onRefresh = { }
             )
         }
@@ -46,6 +48,8 @@ class WeatherWidgetTest {
         composeTestRule.setContent {
             WeatherWidgetComposable(
                 temperature = 75,
+                shortForecast = "Clear",
+                icon = "https://api.weather.gov/icons/land/day/few?size=medium",
                 onRefresh = { }
             )
         }
@@ -62,6 +66,8 @@ class WeatherWidgetTest {
         composeTestRule.setContent {
             WeatherWidgetComposable(
                 temperature = 72,
+                shortForecast = "Partly Cloudy",
+                icon = "https://api.weather.gov/icons/land/day/bkn?size=medium",
                 onRefresh = { },
                 isError = true
             )
@@ -82,7 +88,9 @@ class WeatherWidgetTest {
         composeTestRule.setContent {
             WeatherWidgetComposable(
                 temperature = 78,
-                onRefresh = { refreshClicked = true }
+                onRefresh = { refreshClicked = true },
+                shortForecast = "Partly Cloudy",
+                icon = "https://api.weather.gov/icons/land/day/bkn?size=medium"
             )
         }
 
@@ -101,6 +109,8 @@ class WeatherWidgetTest {
         composeTestRule.setContent {
             WeatherWidgetComposable(
                 temperature = -40,
+                shortForecast = "Partly Cloudy",
+                icon = "https://api.weather.gov/icons/land/day/bkn?size=medium",
                 onRefresh = { }
             )
         }
@@ -116,6 +126,8 @@ class WeatherWidgetTest {
         composeTestRule.setContent {
             WeatherWidgetComposable(
                 temperature = 110,
+                shortForecast = "Partly Cloudy",
+                icon = "https://api.weather.gov/icons/land/day/bkn?size=medium",
                 onRefresh = { }
             )
         }
@@ -131,6 +143,8 @@ class WeatherWidgetTest {
         composeTestRule.setContent {
             WeatherWidgetComposable(
                 temperature = 80,
+                shortForecast = "Partly Cloudy",
+                icon = "https://api.weather.gov/icons/land/day/bkn?size=medium",
                 onRefresh = { },
                 isLandscape = true
             )
@@ -152,6 +166,8 @@ class WeatherWidgetTest {
         composeTestRule.setContent {
             WeatherWidgetComposable(
                 temperature = 75,
+                shortForecast = "Partly Cloudy",
+                icon = "https://api.weather.gov/icons/land/day/bkn?size=medium",
                 onRefresh = { },
                 isFireTV = true
             )
@@ -172,6 +188,8 @@ class WeatherWidgetTest {
         composeTestRule.setContent {
             WeatherWidgetComposable(
                 temperature = 73,
+                shortForecast = "Partly Cloudy",
+                icon = "https://api.weather.gov/icons/land/day/bkn?size=medium",
                 onRefresh = { },
                 isLoading = false,
                 isError = false
@@ -194,6 +212,8 @@ class WeatherWidgetTest {
         composeTestRule.setContent {
             WeatherWidgetComposable(
                 temperature = 73,
+                shortForecast = "Partly Cloudy",
+                icon = "https://api.weather.gov/icons/land/day/bkn?size=medium",
                 onRefresh = { },
                 isLoading = false,
                 isError = true
@@ -216,6 +236,8 @@ class WeatherWidgetTest {
         composeTestRule.setContent {
             WeatherWidgetComposable(
                 temperature = 77,
+                shortForecast = "Partly Cloudy",
+                icon = "https://api.weather.gov/icons/land/day/bkn?size=medium",
                 onRefresh = { },
                 isLandscape = false,
                 isFireTV = false
@@ -236,6 +258,8 @@ class WeatherWidgetTest {
         composeTestRule.setContent {
             WeatherWidgetComposable(
                 temperature = 77,
+                shortForecast = "Partly Cloudy",
+                icon = "https://api.weather.gov/icons/land/day/bkn?size=medium",
                 onRefresh = { },
                 isLandscape = true,
                 isFireTV = false
@@ -256,6 +280,8 @@ class WeatherWidgetTest {
         composeTestRule.setContent {
             WeatherWidgetComposable(
                 temperature = 77,
+                shortForecast = "Partly Cloudy",
+                icon = "https://api.weather.gov/icons/land/day/bkn?size=medium",
                 onRefresh = { },
                 isLandscape = false,
                 isFireTV = true
@@ -276,6 +302,8 @@ class WeatherWidgetTest {
         composeTestRule.setContent {
             WeatherWidgetComposable(
                 temperature = 77,
+                shortForecast = "Partly Cloudy",
+                icon = "https://api.weather.gov/icons/land/day/bkn?size=medium",
                 onRefresh = { },
                 isLandscape = true,
                 isFireTV = true
@@ -297,6 +325,8 @@ class WeatherWidgetTest {
         composeTestRule.setContent {
             WeatherWidgetComposable(
                 temperature = 0,
+                shortForecast = "Partly Cloudy",
+                icon = "https://api.weather.gov/icons/land/day/bkn?size=medium",
                 onRefresh = { }
             )
         }

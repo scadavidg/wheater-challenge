@@ -19,4 +19,8 @@ data class ForecastProperties(
 data class Period(
     @Json(name = "temperature")
     val temperature: Int,
+    @Json(name = "shortForecast")
+    val shortForecast: String,
+    @Json(name = "icon")
+    val icon: String,
 )

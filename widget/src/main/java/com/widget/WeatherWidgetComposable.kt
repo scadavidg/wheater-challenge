@@ -14,6 +14,8 @@ import androidx.compose.ui.unit.dp
  * Supports both Google Android and Amazon FireTV variants with platform-specific optimizations.
  * 
  * @param temperature Temperature in Fahrenheit to display
+ * @param shortForecast Weather condition description (e.g., "Sunny", "Partly Cloudy")
+ * @param icon URL of the weather icon from the API
  * @param modifier Compose modifier for styling
  * @param onRefresh Callback when refresh button is pressed
  * @param isLoading Shows loading state when true
@@ -24,6 +26,8 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun WeatherWidgetComposable(
     temperature: Int,
+    shortForecast: String,
+    icon: String,
     modifier: Modifier = Modifier,
     onRefresh: () -> Unit,
     isLoading: Boolean = false,
@@ -45,6 +49,8 @@ fun WeatherWidgetComposable(
         if (isLandscape) {
             WeatherWidgetLandscapeContentComposable(
                 temperature = temperature,
+                shortForecast = shortForecast,
+                icon = icon,
                 onRefresh = onRefresh,
                 isLoading = isLoading,
                 isError = isError,
@@ -53,6 +59,8 @@ fun WeatherWidgetComposable(
         } else {
             WeatherWidgetPortraitContentComposable(
                 temperature = temperature,
+                shortForecast = shortForecast,
+                icon = icon,
                 onRefresh = onRefresh,
                 isLoading = isLoading,
                 isError = isError,
