@@ -2,7 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
-    kotlin("kapt")
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -25,6 +25,21 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
+
+    flavorDimensions += "platform"
+    productFlavors {
+        create("google") {
+            dimension = "platform"
+            applicationIdSuffix = ".google"
+            versionNameSuffix = "-google"
+        }
+        create("amazon") {
+            dimension = "platform"
+            applicationIdSuffix = ".amazon"
+            versionNameSuffix = "-amazon"
+        }
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -35,9 +50,23 @@ android {
     buildFeatures {
         compose = true
     }
+    
+    testOptions {
+        unitTests {
+            isIncludeAndroidResources = true
+            // Enable JUnit 5 for unit tests
+            all {
+                it.useJUnitPlatform()
+            }
+        }
+    }
 }
 
 dependencies {
+    // Modules
+    implementation(project(":domain"))
+    implementation(project(":data"))
+    implementation(project(":widget"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -47,17 +76,32 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    testImplementation(libs.junit)
+    // Testing - JUnit 5
+    testImplementation(libs.junit5.api)
+    testRuntimeOnly(libs.junit5.engine)
+    testImplementation(libs.junit5.params)
+    testImplementation(libs.mockito.core)
+    testImplementation(libs.mockito.kotlin)
+    testImplementation(libs.coroutines.test)
+    testImplementation(libs.turbine)
+    
+    // Keep JUnit 4 for compatibility
+    testImplementation(libs.junit4)
+    testRuntimeOnly(libs.junit5.vintage)
+    
+    // Android Instrumentation Tests (JUnit 4)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
+    
+    // Debug
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
     // Dependency Injection (Hilt)
     implementation(libs.hilt.android)
-    kapt(libs.hilt.android.compiler)
+    ksp(libs.hilt.android.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
-    kapt(libs.androidx.hilt.compiler)
+    ksp(libs.androidx.hilt.compiler)
 }

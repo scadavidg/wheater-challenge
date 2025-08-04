@@ -27,6 +27,16 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+    
+    testOptions {
+        unitTests {
+            isIncludeAndroidResources = true
+            // Enable JUnit 5 for unit tests
+            all {
+                it.useJUnitPlatform()
+            }
+        }
+    }
 }
 
 dependencies {
@@ -34,7 +44,19 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
-    testImplementation(libs.junit)
+    // Testing - Unit Tests (JUnit 5)
+    testImplementation(libs.junit5.api)
+    testRuntimeOnly(libs.junit5.engine)
+    testImplementation(libs.junit5.params)
+    testImplementation(libs.mockito.core)
+    testImplementation(libs.mockito.kotlin)
+    testImplementation(libs.coroutines.test)
+    
+    // Keep JUnit 4 for compatibility
+    testImplementation(libs.junit4)
+    testRuntimeOnly(libs.junit5.vintage)
+    
+    // Android Instrumentation Tests (JUnit 4)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 }

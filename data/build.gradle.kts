@@ -2,7 +2,7 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.ktlint)
-    kotlin("kapt")
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -29,23 +29,50 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+
+    testOptions {
+        unitTests {
+            isIncludeAndroidResources = true
+            // Enable JUnit 5 for unit tests
+            all {
+                it.useJUnitPlatform()
+            }
+        }
+    }
 }
 
 dependencies {
-
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+    implementation(project(":domain"))
 
     // Dependency Injection (Hilt)
     implementation(libs.hilt.android)
-    kapt(libs.hilt.android.compiler)
+    ksp(libs.hilt.android.compiler)
 
     // Retrofit and Networking
     implementation(libs.retrofit)
     implementation(libs.converter.moshi)
+    implementation(libs.logging.interceptor)
+
+    // JSON Serialization
+    implementation(libs.moshi)
     implementation(libs.moshi.kotlin)
+    ksp(libs.moshi.kotlin.codegen)
+
+    // Testing - JUnit 5
+    testImplementation(libs.junit5.api)
+    testRuntimeOnly(libs.junit5.engine)
+    testImplementation(libs.junit5.params)
+    testImplementation(libs.mockito.core)
+    testImplementation(libs.mockito.kotlin)
+    testImplementation(libs.coroutines.test)
+    testImplementation(libs.mockwebserver)
+    testImplementation(libs.okhttp3)
+
+    // Keep JUnit 4 for compatibility
+    testImplementation(libs.junit4)
+    testRuntimeOnly(libs.junit5.vintage)
+
+    // Android Instrumentation Tests (still using JUnit 4)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
 }
