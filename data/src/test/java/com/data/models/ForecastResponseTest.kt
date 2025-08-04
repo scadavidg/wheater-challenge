@@ -33,8 +33,16 @@ class ForecastResponseTest {
             {
                 "properties": {
                     "periods": [
-                        {"temperature": 75},
-                        {"temperature": 68}
+                        {
+                            "temperature": 75,
+                            "shortForecast": "Sunny",
+                            "icon": "https://api.weather.gov/icons/land/day/skc?size=medium"
+                        },
+                        {
+                            "temperature": 68,
+                            "shortForecast": "Partly Cloudy",
+                            "icon": "https://api.weather.gov/icons/land/day/bkn?size=medium"
+                        }
                     ]
                 }
             }
@@ -49,7 +57,11 @@ class ForecastResponseTest {
             assertNotNull(forecastResponse.properties)
             assertEquals(2, forecastResponse.properties.periods.size)
             assertEquals(75, forecastResponse.properties.periods[0].temperature)
+            assertEquals("Sunny", forecastResponse.properties.periods[0].shortForecast)
+            assertEquals("https://api.weather.gov/icons/land/day/skc?size=medium", forecastResponse.properties.periods[0].icon)
             assertEquals(68, forecastResponse.properties.periods[1].temperature)
+            assertEquals("Partly Cloudy", forecastResponse.properties.periods[1].shortForecast)
+            assertEquals("https://api.weather.gov/icons/land/day/bkn?size=medium", forecastResponse.properties.periods[1].icon)
         }
     }
 
@@ -62,7 +74,11 @@ class ForecastResponseTest {
             {
                 "properties": {
                     "periods": [
-                        {"temperature": 82}
+                        {
+                            "temperature": 82,
+                            "shortForecast": "Clear",
+                            "icon": "https://api.weather.gov/icons/land/day/few?size=medium"
+                        }
                     ]
                 }
             }
@@ -76,6 +92,8 @@ class ForecastResponseTest {
         forecastResponse?.let {
             assertEquals(1, forecastResponse.properties.periods.size)
             assertEquals(82, forecastResponse.properties.periods[0].temperature)
+            assertEquals("Clear", forecastResponse.properties.periods[0].shortForecast)
+            assertEquals("https://api.weather.gov/icons/land/day/few?size=medium", forecastResponse.properties.periods[0].icon)
         }
     }
 
@@ -106,7 +124,12 @@ class ForecastResponseTest {
     @DisplayName("Given ForecastResponse when serializing to JSON then produces valid JSON")
     fun givenForecastResponse_whenSerializingToJson_thenProducesValidJson() {
         // Given
-        val period = Period(temperature = 72)
+        val period =
+            Period(
+                temperature = 72,
+                shortForecast = "Partly Cloudy",
+                icon = "https://api.weather.gov/icons/land/day/bkn?size=medium",
+            )
         val properties = ForecastProperties(periods = listOf(period))
         val forecastResponse = ForecastResponse(properties = properties)
 
@@ -116,6 +139,8 @@ class ForecastResponseTest {
         // Then
         assertNotNull(json)
         assert(json.contains("\"temperature\":72"))
+        assert(json.contains("\"shortForecast\":\"Partly Cloudy\""))
+        assert(json.contains("\"icon\":\"https://api.weather.gov/icons/land/day/bkn?size=medium\""))
         assert(json.contains("properties"))
         assert(json.contains("periods"))
     }
@@ -129,7 +154,11 @@ class ForecastResponseTest {
             {
                 "properties": {
                     "periods": [
-                        {"temperature": -10}
+                        {
+                            "temperature": -10,
+                            "shortForecast": "Snow",
+                            "icon": "https://api.weather.gov/icons/land/day/snow?size=medium"
+                        }
                     ]
                 }
             }
@@ -142,6 +171,8 @@ class ForecastResponseTest {
         assertNotNull(forecastResponse)
         forecastResponse?.let {
             assertEquals(-10, forecastResponse.properties.periods[0].temperature)
+            assertEquals("Snow", forecastResponse.properties.periods[0].shortForecast)
+            assertEquals("https://api.weather.gov/icons/land/day/snow?size=medium", forecastResponse.properties.periods[0].icon)
         }
     }
 }

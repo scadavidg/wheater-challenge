@@ -29,7 +29,7 @@ class GetWeatherUseCaseTest {
     @DisplayName("Given repository returns weather success when invoking use case then returns same weather")
     fun givenRepositoryReturnsWeatherSuccess_whenInvokingUseCase_thenReturnsSameWeather() = runTest {
         // Given
-        val expectedWeather = Weather(temperature = 22, location = "Test City")
+        val expectedWeather = Weather(temperature = 22, shortForecast = "Partly Cloudy", icon = "https://api.weather.gov/icons/land/day/bkn?size=medium", location = "Test City")
         val successResult = Result.Success(expectedWeather)
         whenever(repository.getWeather()).thenReturn(successResult)
 
@@ -48,7 +48,7 @@ class GetWeatherUseCaseTest {
     @DisplayName("Given repository returns weather with default location when invoking use case then preserves default location")
     fun givenRepositoryReturnsWeatherWithDefaultLocation_whenInvokingUseCase_thenPreservesDefaultLocation() = runTest {
         // Given
-        val expectedWeather = Weather(temperature = 25) // Uses default location
+        val expectedWeather = Weather(temperature = 25, shortForecast = "Clear", icon = "https://api.weather.gov/icons/land/day/few?size=medium") // Uses default location
         val successResult = Result.Success(expectedWeather)
         whenever(repository.getWeather()).thenReturn(successResult)
 

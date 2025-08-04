@@ -69,6 +69,9 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+
+    // ===== IMAGE LOADING =====
+    implementation(libs.coil.compose)
     
     // ===== LEGACY UI (Material Design) =====
     implementation(libs.androidx.appcompat)
