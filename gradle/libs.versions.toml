@@ -20,6 +20,7 @@ material = "1.12.0"
 # ===== DEPENDENCY INJECTION =====
 hilt = "2.57"  
 hiltCompiler = "1.2.0"
+hiltAndroidTesting = "2.57"
 
 # ===== NETWORKING =====
 retrofit = "3.0.0"
@@ -76,6 +77,7 @@ material = { group = "com.google.android.material", name = "material", version.r
 # ===== DEPENDENCY INJECTION =====
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 hilt-android-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
+hilt-android-testing = { group = "com.google.dagger", name = "hilt-android-testing", version.ref = "hiltAndroidTesting" }
 androidx-hilt-compiler = { group = "androidx.hilt", name = "hilt-compiler", version.ref = "hiltCompiler" }
 androidx-hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltCompiler" }
 
